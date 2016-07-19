@@ -60,6 +60,46 @@ function build_initial_map(location) {
 	build_map_update(location);
 }
 
+function kmtom(dist){
+    return Math.round(dist*1000);
+}
+
+function deg2Rad(deg){
+    return deg * (Math.PI / 180);
+}
+
+function determineDistance(lat1, long1, lat2, long2){
+    var r = 6371; //Radius of Earth
+    var dLat = deg2Rad(lat2-lat1);
+    var dLon = deg2Rad(long2 - long1);
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2)
+    + Math.cos(deg2Rad(lat1)) * Math.cos(deg2Rad(lat2))
+    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = r * c; // Distance in km
+    return kmtom(d);
+}
+
+function kmtom(dist){
+    return Math.round(dist*1000);
+}
+
+function deg2Rad(deg){
+    return deg * (Math.PI / 180);
+}
+
+function determineDistance(lat1, long1, lat2, long2){
+    var r = 6371; //Radius of Earth
+    var dLat = deg2Rad(lat2-lat1);
+    var dLon = deg2Rad(long2 - long1);
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2)
+    + Math.cos(deg2Rad(lat1)) * Math.cos(deg2Rad(lat2))
+    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = r * c; // Distance in km
+    return kmtom(d);
+}
+
 function build_map_update(location) {
 	markers = [];
 	infoWindowContent = [];
@@ -86,7 +126,7 @@ function build_map_update(location) {
 				marker_obj = [v.name, v.latitude,v.longitude];
 				markers.push(marker_obj);
 				infoWindowContent_obj = ['<div class="info_content">' +
-		'<h3>'+v.name+'</h3>' +
+		'<h3>'+v.name+'</h3>' + '<p> is ' + determineDistance(location.coords.latitude, location.coords.longitude, v.latitude, v.longitude) + 'm ' + v.direction + 
 		'<p>will be there for another '+v.time_left+' seconds.</p>' +        '</div>'];
 				infoWindowContent.push(infoWindowContent_obj);
 				marker_images.push("/static/poke/"+v.id+".ico");
