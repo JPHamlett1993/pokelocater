@@ -126,7 +126,7 @@ function build_map_update(location) {
 				marker_obj = [v.name, v.latitude,v.longitude];
 				markers.push(marker_obj);
 				infoWindowContent_obj = ['<div class="info_content">' +
-		'<h3>'+v.name+'</h3>' + '<p> is ' + determineDistance(location.coords.latitude, location.coords.longitude, v.latitude, v.longitude) + 'm ' + v.direction + 
+		'<h3>'+v.name+'</h3>' + '<p> is ' + determineDistance(location.coords.latitude, location.coords.longitude, v.latitude, v.longitude) + 'm ' + v.direction + 'of you' + 
 		'<p>will be there for another '+v.time_left+' seconds.</p>' +        '</div>'];
 				infoWindowContent.push(infoWindowContent_obj);
 				marker_images.push("/static/poke/"+v.id+".ico");
