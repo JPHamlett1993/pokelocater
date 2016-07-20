@@ -18,6 +18,11 @@
 
     #loader{
         color: #fffca8;
+        z-index: 999;
+        font-family: SANS-SERIF;
+        background-color: #fff;
+        border-radius:10px;
+        padding: 20px;
         border: 2px solid black;
     }
 
@@ -146,10 +151,10 @@ function build_map_update(location) {
 		'<h3>'+v.name+'</h3>' + '<p> is ' + determineDistance(location.coords.latitude, location.coords.longitude, v.latitude, v.longitude) + 'm ' + v.direction + 'of you' + 
 		'<p>will be there for another '+v.time_left+' seconds.</p>' +        '</div>'];
 				infoWindowContent.push(infoWindowContent_obj);
-                loader.style.visibility = 'hidden';
 				marker_images.push("/static/poke/"+v.id+".ico");
 			});
             refresh_map_with_new_data();
+            loader.style.visibility = 'hidden';
 			setTimeout(function(){
 				navigator.geolocation.getCurrentPosition(handler);
 			}, 30000);
