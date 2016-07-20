@@ -4,18 +4,36 @@
 </head>
 
 <style>
-html { height: 100% }
-body { height: 100%; margin: 0px; padding: 0px }
-#map_wrapper {
-    height: 100%;
-}
+    html { height: 100% }
+    body { height: 100%; margin: 0px; padding: 0px }
 
-#map_canvas {
-    width: 100%;
-    height: 100%;
-}
+    #map_wrapper {
+        height: 100%;
+    }
+
+    #map_canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    #loader{
+        display:none;
+        top:5px;
+        left:50%;
+        transform: translateX(-50%);
+    }
+
+    .center {
+        margin: auto;
+        width: 60%;
+        border: 3px solid #73AD21;
+        padding: 10px;
+    }
 </style>
 
+<div class="center" id="loader">
+    Please wait... searching for pokemon.
+</div>
 <div id="map_wrapper">
     <div id="map_canvas" class="mapping">Detecting location...</div>
 </div>
@@ -129,6 +147,7 @@ function build_map_update(location) {
 		'<h3>'+v.name+'</h3>' + '<p> is ' + determineDistance(location.coords.latitude, location.coords.longitude, v.latitude, v.longitude) + 'm ' + v.direction + 'of you' + 
 		'<p>will be there for another '+v.time_left+' seconds.</p>' +        '</div>'];
 				infoWindowContent.push(infoWindowContent_obj);
+                loader.style.visibility = 'hidden';
 				marker_images.push("/static/poke/"+v.id+".ico");
 			});
             refresh_map_with_new_data();
